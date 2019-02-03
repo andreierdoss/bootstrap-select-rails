@@ -32,6 +32,7 @@ select.selectpicker {
 
 .bootstrap-select {
   width: 220px \0; /*IE9 and below*/
+  vertical-align: middle;
 
   // The selectpicker button
   > .dropdown-toggle {
@@ -40,11 +41,30 @@ select.selectpicker {
     z-index: 1;
     // necessary for proper positioning of caret in Bootstrap 4 (pushes caret to the right)
     text-align: right;
+    white-space: nowrap;
 
-    &.bs-placeholder,
-    &.bs-placeholder:hover,
-    &.bs-placeholder:focus,
-    &.bs-placeholder:active { color: $input-color-placeholder; }
+    &.bs-placeholder {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        color: $input-color-placeholder;
+      }
+
+      &.btn-primary,
+      &.btn-secondary,
+      &.btn-success,
+      &.btn-danger,
+      &.btn-info,
+      &.btn-dark {
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+          color: $input-alt-color-placeholder;
+        }
+      }
+    }
   }
 
   > select {
@@ -88,6 +108,7 @@ select.selectpicker {
     width: $width-default;
   }
 
+  > select.mobile-device:focus + .dropdown-toggle,
   .dropdown-toggle:focus {
     outline: thin dotted #333333 !important;
     outline: 5px auto -webkit-focus-ring-color !important;
@@ -149,6 +170,21 @@ select.selectpicker {
       line-height: inherit;
       border-radius: inherit;
     }
+  }
+
+  &.form-control-sm .dropdown-toggle,
+  &.form-control-lg .dropdown-toggle {
+    font-size: inherit;
+    line-height: inherit;
+    border-radius: inherit;
+  }
+
+  &.form-control-sm .dropdown-toggle {
+    padding: $input-padding-y-sm $input-padding-x-sm;
+  }
+
+  &.form-control-lg .dropdown-toggle {
+    padding: $input-padding-y-lg $input-padding-x-lg;
   }
 
   // Set the width of the live search (and any other form control within an inline form)
@@ -247,7 +283,7 @@ select.selectpicker {
       position: relative;
 
       &.active small {
-        color: #fff;
+        color: $input-alt-color-placeholder !important;
       }
 
       &.disabled a {
